@@ -1,0 +1,171 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: var(--font-bricolage), "DM Sans", system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+
+  --color-brand: var(--brand);
+  --color-brand-secondary: var(--brand2);
+  --color-surface: var(--surface);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-tint: var(--tint);
+  --color-acc: var(--acc);
+}
+
+:root {
+  --bg: #fbf8ff;
+  --alt: #f3ecfc;
+  --surface: #ffffff;
+  --ink: #1c1230;
+  --muted: #5d5375;
+  --line: #e4dbf2;
+  --brand: #4b1d8f;
+  --brand2: #a03fd0;
+  --tint: #f1e9fb;
+  --chip: transparent;
+  --acc: #4b1d8f;
+  color-scheme: light;
+}
+
+html {
+  scroll-padding-top: 80px;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Gradient highlight for emphasized text */
+.brand-gradient-text {
+  font-style: italic;
+  background: linear-gradient(120deg, var(--brand), var(--brand2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-right: 0.08em;
+}
+
+/* Float animation for badges and illustrations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+.animate-float-slow {
+  animation: float 7s ease-in-out infinite;
+}
+
+/* Infinite Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 35s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Animated Equalizer Bars */
+@keyframes equalizer {
+  0%, 100% {
+    transform: scaleY(0.4);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+.animate-equalizer {
+  transform-origin: bottom;
+  animation: equalizer 2.6s ease-in-out infinite;
+}
+
+/* Spinning conic border for Most Popular Plan */
+@property --ang {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-border {
+  to {
+    --ang: 360deg;
+  }
+}
+
+.conic-border-glow {
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--tint), var(--tint)) padding-box,
+    conic-gradient(from var(--ang), #4b1d8f, #a03fd0, #f0a6ff, #4b1d8f) border-box;
+  animation: spin-border 6s linear infinite;
+  box-shadow: 0 25px 50px -20px rgba(160, 63, 208, 0.5);
+}
+
+/* Spotlight card radial glow */
+.spotlight-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: radial-gradient(
+    320px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(160, 63, 208, 0.18),
+    transparent 65%
+  );
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Scroll Progress Bar */
+.scroll-progress-line {
+  transform-origin: 0% 50%;
+}
