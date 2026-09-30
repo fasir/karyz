@@ -3,7 +3,13 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ShoppingCart, Sparkles, ArrowRight, PawPrint, Bone, House, Fish } from "lucide-react";
+import { ShoppingCart, Sparkles, ArrowRight, PawPrint, Bone, House, Fish, Star, TrendingUp } from "lucide-react";
+
+const STATS = [
+  { value: "12K+", label: "Happy pets" },
+  { value: "4.9★", label: "Avg. rating" },
+  { value: "Free", label: "Ship over $50" },
+];
 
 export function Hero() {
   const [cartCount, setCartCount] = useState<number>(0);
@@ -18,61 +24,99 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative pt-16 pb-20 md:pt-24 md:pb-28 overflow-hidden bg-gradient-to-b from-[var(--alt)] via-[var(--bg)] to-[var(--bg)]"
+      className="relative pt-16 pb-0 md:pt-24 overflow-hidden"
+      style={{
+        background: "linear-gradient(160deg, #f5efff 0%, #faf8ff 40%, #ede9fe 100%)",
+      }}
     >
-      {/* Background ambient light orbs and grid texture */}
+      {/* Background ambient orbs */}
       <div
-        className="absolute -top-24 -left-20 w-96 h-96 rounded-full bg-purple-500/20 blur-3xl pointer-events-none"
+        className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(91,33,182,0.15) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
       <div
-        className="absolute top-1/3 -right-24 w-96 h-96 rounded-full bg-fuchsia-500/15 blur-3xl pointer-events-none"
+        className="absolute top-1/2 -right-40 w-[450px] h-[450px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
+      {/* Dot grid */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(var(--line)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:linear-gradient(to_bottom,black,transparent_80%)] pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(var(--line) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+          maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 75%)",
+        }}
         aria-hidden="true"
       />
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
-        {/* Release / Feature Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--tint)] border border-[var(--line)] text-xs sm:text-sm font-medium text-[var(--brand)] mb-6 shadow-sm">
-          <Sparkles className="w-3.5 h-3.5" />
-          <span>Thoughtful essentials for every kind of companion</span>
+      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Top badge */}
+        <div className="flex justify-center mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-[var(--brand)] border border-[var(--brand)]/30 shadow-sm"
+            style={{ background: "rgba(91,33,182,0.06)", backdropFilter: "blur(8px)" }}>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <Sparkles className="w-3.5 h-3.5" />
+            <span>Thoughtful essentials for every kind of companion</span>
+          </div>
         </div>
 
-        {/* Hero Title */}
-        <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[var(--ink)] max-w-4xl mx-auto leading-[1.08]">
-        The easiest <span className="brand-gradient-text">online store</span> builder
-        </h1>
+        {/* Hero title */}
+        <div className="text-center max-w-4xl mx-auto">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[var(--ink)] leading-[1.04]">
+            The easiest{" "}
+            <span className="brand-gradient-text">online store</span>
+            <br />builder
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl text-[var(--muted)] max-w-2xl mx-auto leading-relaxed">
+            Discover everyday pet accessories made for comfort, curious noses, and all the little adventures together.
+          </p>
 
-        {/* Hero Description */}
-        <p className="mt-6 text-lg sm:text-xl text-[var(--muted)] max-w-2xl mx-auto leading-relaxed">
-          Discover everyday pet accessories made for comfort, curious noses, and all the little adventures together.
-        </p>
+          {/* CTAs */}
+          <div className="mt-10 flex flex-wrap gap-4 justify-center items-center">
+            <Link
+              href="#collections"
+              className="px-7 py-4 rounded-full text-base font-semibold border border-[var(--line)] bg-white/80 text-[var(--ink)] hover:border-[var(--brand)] hover:bg-white hover:shadow-lg transition-all active:scale-95"
+            >
+              Preview a store
+            </Link>
+            <Link
+              href="/create-store"
+              className="magnetic-btn px-8 py-4 rounded-full text-base font-semibold text-white inline-flex items-center gap-2.5 shadow-2xl"
+              style={{ background: "linear-gradient(135deg, #5b21b6, #a855f7)", boxShadow: "0 20px 40px -12px rgba(91,33,182,0.45)" }}
+            >
+              <span>Create your store</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
 
-        {/* Call to Actions */}
-        <div className="mt-8 flex flex-wrap gap-3.5 justify-center items-center">
-          <Link
-            href="#collections"
-            className="px-6 py-3.5 rounded-full text-base font-semibold border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] hover:border-[var(--brand)] hover:shadow-md transition-all active:scale-95"
-          >
-          Preview a store
-          </Link>
-          <Link
-            href="/create-store"
-            className="px-7 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[var(--brand)] to-[var(--brand2)] shadow-lg shadow-purple-900/20 hover:shadow-purple-700/30 hover:opacity-95 transition-all active:scale-95 inline-flex items-center gap-2"
-          >
-            <span>Create your own store</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          {/* Social proof stats */}
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
+            {STATS.map((stat) => (
+              <div key={stat.label} className="flex flex-col items-center">
+                <span className="text-xl sm:text-2xl font-bold text-[var(--ink)]">{stat.value}</span>
+                <span className="text-xs text-[var(--muted)] font-medium">{stat.label}</span>
+              </div>
+            ))}
+            {/* Reviews row */}
+            <div className="flex items-center gap-1.5">
+              <div className="flex">
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
+                ))}
+              </div>
+              <span className="text-sm font-medium text-[var(--muted)]">2,400+ reviews</span>
+            </div>
+          </div>
         </div>
 
-        {/* Interactive Store Mockup Demo with Floating Badges */}
-        <div className="relative mt-14 max-w-4xl mx-auto" id="demo">
-          {/* Floating Badge 1 - Top Right */}
+        {/* ── Full-width interactive store mockup ── */}
+        <div className="relative mt-16 max-w-4xl mx-auto" id="demo">
+          {/* Floating Badges */}
           <div
-            className="hidden sm:flex absolute -top-5 right-6 z-20 items-center gap-2.5 bg-[var(--surface)] border border-[var(--line)] rounded-2xl px-4 py-2.5 text-xs sm:text-sm font-medium shadow-xl shadow-purple-950/15 animate-float"
+            className="hidden sm:flex absolute -top-5 right-4 z-20 items-center gap-2.5 px-4 py-2.5 text-xs sm:text-sm font-medium shadow-xl rounded-2xl animate-float"
+            style={{ background: "rgba(255,255,255,0.9)", backdropFilter: "blur(12px)", border: "1px solid rgba(91,33,182,0.15)" }}
             aria-hidden="true"
           >
             <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
@@ -82,122 +126,118 @@ export function Hero() {
             </span>
           </div>
 
-          {/* Floating Badge 2 - Bottom Left */}
           <div
-            className="hidden sm:flex absolute -bottom-5 left-6 z-20 items-center gap-2.5 bg-[var(--surface)] border border-[var(--line)] rounded-2xl px-4 py-2.5 text-xs sm:text-sm font-medium shadow-xl shadow-purple-950/15 animate-float-delayed"
+            className="hidden sm:flex absolute -bottom-4 left-4 z-20 items-center gap-2.5 px-4 py-2.5 text-xs sm:text-sm font-medium shadow-xl rounded-2xl animate-float-delayed"
+            style={{ background: "rgba(255,255,255,0.9)", backdropFilter: "blur(12px)", border: "1px solid rgba(91,33,182,0.15)" }}
             aria-hidden="true"
           >
-            <div className="w-6 h-6 rounded-full bg-emerald-500/15 text-emerald-600 flex items-center justify-center font-bold text-xs">
-              ✓
-            </div>
+            <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</div>
             <span>
               <strong className="text-[var(--brand)] font-semibold">Made for</strong> daily adventures
             </span>
           </div>
 
-          {/* Store Preview Container */}
-          <div className="relative bg-[var(--surface)] border border-[var(--line)] rounded-3xl p-4 sm:p-6 text-left shadow-2xl shadow-purple-900/10">
-            <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm text-[var(--muted)] pb-3 mb-3 border-b border-[var(--line)]">
-              <span className="font-medium flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[var(--brand)] inline-block" />
-                A few favorites for your four-legged friend
-              </span>
+          {/* ── Live Store Card ── */}
+          <div
+            className="relative text-left rounded-[28px] overflow-hidden shadow-2xl"
+            style={{ border: "1px solid rgba(91,33,182,0.15)", background: "rgba(255,255,255,0.85)", backdropFilter: "blur(20px)" }}
+          >
+            {/* Browser chrome bar */}
+            <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--line)] bg-white/60">
+              <div className="flex gap-1.5">
+                <span className="w-3 h-3 rounded-full bg-[#FF5F56]" />
+                <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
+                <span className="w-3 h-3 rounded-full bg-[#27C93F]" />
+              </div>
+              <div className="flex-1 mx-3 bg-[var(--tint)] border border-[var(--line)] rounded-lg py-1.5 px-3 flex items-center gap-1.5 text-xs text-[var(--muted)]">
+                <svg viewBox="0 0 24 24" className="w-3 h-3 text-emerald-600 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <span className="font-medium">pawwhisker.store.link</span>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-semibold text-[var(--muted)]">
+                <ShoppingCart className="w-4 h-4" />
+                <span>Cart ({cartCount})</span>
+              </div>
             </div>
 
-            {/* The Live Store Mockup */}
-            <div className="border border-[var(--line)] rounded-2xl overflow-hidden bg-[var(--bg)] shadow-inner">
-              {/* Store Bar */}
-              <div
-                className="px-4 py-3 text-white flex items-center justify-between font-semibold text-sm transition-colors duration-300"
-                style={{ backgroundColor: "var(--brand)" }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-white/80" />
-                  <span>Paw &amp; Whisker</span>
-                </div>
-                <div className="flex items-center gap-1.5 bg-black/20 px-3 py-1 rounded-full text-xs">
-                  <ShoppingCart className="w-3.5 h-3.5" />
-                  <span>Cart ({cartCount})</span>
-                </div>
-              </div>
-
-              {/* Store Hero Banner */}
-              <div
-                className="relative min-h-32 p-5 sm:p-7 text-white flex items-center justify-between overflow-hidden"
-              >
-                <Image
-                  src="https://images.unsplash.com/photo-1551717743-49959800b1f6?auto=format&fit=crop&w=1200&q=85"
-                  alt="Happy dog enjoying an outdoor walk"
-                  fill
-                  unoptimized
-                  loading="eager"
-                  sizes="(max-width: 768px) 100vw, 900px"
-                  className="object-cover object-center"
-                />
-                <div className="absolute inset-0 opacity-70" style={{ backgroundColor: "var(--brand)" }} />
-                <div className="relative z-10 font-display font-bold text-xl sm:text-2xl leading-tight">
-                  Everyday adventures.
-                  <br />
-                  <span className="text-white/90 text-sm sm:text-base font-normal">
-                    Free shipping over $50.
-                  </span>
-                </div>
-                <div className="relative z-10 w-16 h-16 sm:w-20 sm:h-20 shrink-0 animate-float">
-                  <PawPrint className="w-full h-full text-white" strokeWidth={1.4} />
-                </div>
-              </div>
-
-              {/* Store 4 Products Grid */}
-              <div className="p-3 sm:p-4 grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3">
-                {[
-                  {
-                    name: "Trail harness",
-                    price: "$32",
-                    icon: <PawPrint className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />,
-                  },
-                  {
-                    name: "Soft chew toy",
-                    price: "$16",
-                    icon: <Bone className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />,
-                  },
-                  {
-                    name: "Cozy pet bed",
-                    price: "$58",
-                    icon: <House className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />,
-                  },
-                  {
-                    name: "Slow-feeder bowl",
-                    price: "$24",
-                    icon: <Fish className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />,
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.name}
-                    className="bg-[var(--surface)] border border-[var(--line)] rounded-xl p-2.5 sm:p-3 text-xs sm:text-sm group hover:border-[var(--brand)] hover:shadow-md transition-all"
-                  >
-                    <div className="h-16 sm:h-20 rounded-lg bg-[var(--tint)] flex items-center justify-center p-2 mb-2 group-hover:scale-105 transition-transform duration-200">
-                      {item.icon}
-                    </div>
-                    <div className="flex items-center justify-between mt-1">
-                      <b className="font-semibold text-[var(--ink)] block truncate">
-                        {item.name}
-                      </b>
-                      <span className="text-[var(--muted)] font-medium">
-                        {item.price}
-                      </span>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => handleAddToCart(item.name)}
-                      className="mt-2 w-full py-1 text-[11px] font-semibold rounded-md border border-[var(--line)] hover:bg-[var(--tint)] hover:text-[var(--brand)] transition-colors cursor-pointer"
-                    >
-                      {recentlyAdded === item.name ? "Added! ✓" : "+ Add to bag"}
-                    </button>
+            {/* Store Hero Banner with actual photo */}
+            <div className="relative h-40 sm:h-52 overflow-hidden">
+              <Image
+                src="/dog_adventure.jpg"
+                alt="Happy dog on adventure"
+                fill
+                unoptimized
+                loading="eager"
+                sizes="(max-width: 768px) 100vw, 900px"
+                className="object-cover object-center"
+              />
+              {/* Dark gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand)]/80 via-[var(--brand)]/50 to-transparent" />
+              <div className="absolute inset-0 flex items-center px-6 sm:px-8">
+                <div className="text-white">
+                  <p className="text-xs font-semibold uppercase tracking-widest text-purple-200 mb-1">New arrivals</p>
+                  <h3 className="font-display font-bold text-2xl sm:text-3xl leading-tight">
+                    Everyday adventures.
+                    <br />
+                    <span className="text-white/80 text-lg sm:text-xl font-normal">Free shipping over $50.</span>
+                  </h3>
+                  <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold bg-white/20 px-3 py-1.5 rounded-full backdrop-blur-sm">
+                    <TrendingUp className="w-3 h-3" /> Shop bestsellers
                   </div>
-                ))}
+                </div>
+                <div className="ml-auto hidden sm:block">
+                  <PawPrint className="w-20 h-20 text-white/20 animate-float" strokeWidth={1.2} />
+                </div>
               </div>
+            </div>
+
+            {/* Products Grid */}
+            <div className="p-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+              {[
+                { name: "Trail harness", price: "$32", icon: <PawPrint className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />, badge: "New" },
+                { name: "Soft chew toy", price: "$16", icon: <Bone className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />, badge: null },
+                { name: "Cozy pet bed", price: "$58", icon: <House className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />, badge: "Popular" },
+                { name: "Slow-feeder bowl", price: "$24", icon: <Fish className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />, badge: null },
+              ].map((item) => (
+                <div
+                  key={item.name}
+                  className="relative bg-white border border-[var(--line)] rounded-2xl p-3 text-xs group hover:border-[var(--brand)]/50 hover:shadow-lg transition-all duration-200 cursor-pointer"
+                >
+                  {item.badge && (
+                    <span className="absolute -top-2 right-2 z-10 text-[9px] font-bold px-2 py-0.5 rounded-full text-white"
+                      style={{ background: "linear-gradient(135deg, #5b21b6, #a855f7)" }}>
+                      {item.badge}
+                    </span>
+                  )}
+                  <div className="h-16 sm:h-20 rounded-xl bg-[var(--tint)] flex items-center justify-center p-2 mb-2.5 group-hover:scale-105 transition-transform duration-200">
+                    {item.icon}
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <b className="font-semibold text-[var(--ink)] truncate text-[11px]">{item.name}</b>
+                    <span className="text-[var(--brand)] font-bold text-[11px]">{item.price}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => handleAddToCart(item.name)}
+                    className="mt-2 w-full py-1.5 text-[10px] font-bold rounded-lg transition-all cursor-pointer"
+                    style={
+                      recentlyAdded === item.name
+                        ? { background: "linear-gradient(135deg, #059669, #10b981)", color: "white" }
+                        : { background: "var(--tint)", color: "var(--brand)" }
+                    }
+                  >
+                    {recentlyAdded === item.name ? "Added ✓" : "+ Add to bag"}
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
+
+          {/* Bottom fade into next section */}
+          <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+            style={{ background: "linear-gradient(to bottom, transparent, var(--bg))" }} />
         </div>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Check, Sparkles, ArrowRight } from "lucide-react";
+import { Check, Sparkles, ArrowRight, Zap } from "lucide-react";
 
 interface PlanItem {
   name: string;
@@ -13,6 +13,7 @@ interface PlanItem {
   popular?: boolean;
   buttonText: string;
   features: string[];
+  accent: string;
 }
 
 const PLANS: PlanItem[] = [
@@ -22,6 +23,7 @@ const PLANS: PlanItem[] = [
     monthlyPrice: 19,
     annualPrice: 15,
     buttonText: "Start with Starter",
+    accent: "#6b7280",
     features: [
       "1 store, up to 100 products",
       "Theme editor with logo and colours",
@@ -39,6 +41,7 @@ const PLANS: PlanItem[] = [
     tag: "Most popular",
     popular: true,
     buttonText: "Start with Business",
+    accent: "#a855f7",
     features: [
       "Unlimited products & categories",
       "Custom domain & full brand kit",
@@ -54,6 +57,7 @@ const PLANS: PlanItem[] = [
     monthlyPrice: "Custom",
     annualPrice: "Custom",
     buttonText: "Talk to sales",
+    accent: "#5b21b6",
     features: [
       "Full white-label & multi-brand stores",
       "Dedicated cloud capacity, 99.99% uptime SLA",
@@ -68,52 +72,64 @@ export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
 
   return (
-    <section id="pricing" className="py-20 md:py-28 bg-[var(--bg)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section id="pricing" className="py-24 md:py-32 relative overflow-hidden bg-[var(--bg)]">
+      {/* Background decoration */}
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
+        style={{
+          backgroundImage: "radial-gradient(circle at 50% 0%, rgba(91,33,182,0.07) 0%, transparent 50%)",
+        }} />
+      <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
+        style={{
+          backgroundImage: "radial-gradient(var(--line) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+          maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)",
+          opacity: 0.5,
+        }} />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
         {/* Header */}
-        <div className="max-w-2xl mx-auto text-center mb-12">
-          <span className="text-xs sm:text-sm font-semibold text-[var(--brand)] uppercase tracking-wider block mb-2">
+        <div className="max-w-2xl mx-auto text-center mb-14">
+          <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[var(--brand)] uppercase tracking-widest mb-3 px-3 py-1.5 rounded-full bg-[var(--tint)]">
             Transparent Pricing
           </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--ink)] leading-tight">
-            Simple plans for <span className="brand-gradient-text">every stage</span>
+            Simple plans for{" "}
+            <span className="brand-gradient-text">every stage</span>
           </h2>
           <p className="mt-4 text-base sm:text-lg text-[var(--muted)]">
             Start with a 14-day free trial. Change, upgrade, or cancel your plan at any time.
           </p>
 
-          {/* Billing Switch: Monthly / Annual */}
-          <div className="mt-8 inline-flex items-center gap-3 p-1.5 rounded-full bg-[var(--surface)] border border-[var(--line)] shadow-xs">
+          {/* Billing Switch */}
+          <div className="mt-8 inline-flex items-center gap-1 p-1.5 rounded-full bg-white border border-[var(--line)] shadow-sm">
             <button
               type="button"
               onClick={() => setIsAnnual(false)}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
                 !isAnnual
                   ? "bg-[var(--ink)] text-white shadow-sm"
                   : "text-[var(--muted)] hover:text-[var(--ink)]"
               }`}
             >
-              Monthly billing
+              Monthly
             </button>
             <button
               type="button"
               onClick={() => setIsAnnual(true)}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+              className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all cursor-pointer flex items-center gap-2 ${
                 isAnnual
                   ? "bg-[var(--ink)] text-white shadow-sm"
                   : "text-[var(--muted)] hover:text-[var(--ink)]"
               }`}
             >
-              <span>Annual billing</span>
-              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500 text-white">
-                Save 20%
-              </span>
+              <span>Annual</span>
+              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-500 text-white">Save 20%</span>
             </button>
           </div>
         </div>
 
-        {/* Pricing Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch group/plans">
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
           {PLANS.map((plan) => {
             const price = isAnnual ? plan.annualPrice : plan.monthlyPrice;
             const isCustom = typeof price === "string";
@@ -121,53 +137,58 @@ export function Pricing() {
             return (
               <div
                 key={plan.name}
-                className={`relative rounded-3xl p-8 flex flex-col justify-between transition-all duration-300 ${
+                className={`relative rounded-[28px] flex flex-col justify-between transition-all duration-300 hover:scale-[1.02] ${
                   plan.popular
-                    ? "conic-border-glow z-10 lg:-translate-y-2"
-                    : "bg-[var(--surface)] border border-[var(--line)] hover:border-[var(--brand)] shadow-lg hover:shadow-2xl"
-                } group-hover/plans:opacity-85 hover:!opacity-100 hover:scale-[1.02]`}
+                    ? "conic-border-glow z-10 lg:-translate-y-3"
+                    : "bg-white border border-[var(--line)] shadow-lg hover:shadow-2xl hover:shadow-purple-900/10 hover:border-[var(--brand)]/40"
+                }`}
               >
-                <div>
+                {/* Top accent bar */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-1 rounded-full opacity-60"
+                  style={{ background: `linear-gradient(90deg, transparent, ${plan.accent}, transparent)` }} />
+
+                <div className="p-8">
                   {/* Badge */}
-                  <div className="min-h-7 mb-2 flex items-center justify-between">
+                  <div className="min-h-8 mb-3 flex items-center">
                     {plan.popular ? (
-                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r from-[var(--brand)] to-[var(--brand2)] shadow-sm">
+                      <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold text-white shadow-sm"
+                        style={{ background: "linear-gradient(135deg, #5b21b6, #a855f7)" }}>
                         <Sparkles className="w-3 h-3" />
                         {plan.tag}
                       </span>
                     ) : (
-                      <span className="text-xs font-semibold uppercase tracking-wider text-[var(--muted)]">
+                      <span className="text-xs font-bold uppercase tracking-widest text-[var(--muted)]">
                         {plan.name} Tier
                       </span>
                     )}
                   </div>
 
-                  <h3 className="text-2xl font-bold text-[var(--ink)] mb-1">
-                    {plan.name}
-                  </h3>
-                  <p className="text-sm text-[var(--muted)] mb-6 min-h-10">
-                    {plan.desc}
-                  </p>
+                  <h3 className="text-2xl font-bold text-[var(--ink)] mb-1">{plan.name}</h3>
+                  <p className="text-sm text-[var(--muted)] mb-8 min-h-10">{plan.desc}</p>
 
-                  {/* Price */}
-                  <div className="font-display font-bold text-4xl sm:text-5xl text-[var(--ink)] tracking-tight mb-6">
+                  {/* Price display */}
+                  <div className="mb-8">
                     {isCustom ? (
-                      price
+                      <div className="font-display font-bold text-4xl sm:text-5xl text-[var(--ink)] tracking-tight">{price}</div>
                     ) : (
-                      <>
-                        ${price}
-                        <span className="text-sm font-normal text-[var(--muted)] font-sans ml-1">
-                          /month
-                        </span>
-                      </>
+                      <div className="flex items-end gap-1">
+                        <span className="font-display font-bold text-4xl sm:text-5xl text-[var(--ink)] tracking-tight">${price}</span>
+                        <span className="text-sm font-normal text-[var(--muted)] mb-2">/month</span>
+                      </div>
+                    )}
+                    {isAnnual && !isCustom && (
+                      <p className="text-xs text-emerald-600 font-semibold mt-1 flex items-center gap-1">
+                        <Zap className="w-3 h-3" /> Billed annually — saving you money
+                      </p>
                     )}
                   </div>
 
                   {/* Feature Checklist */}
-                  <ul className="space-y-3 pt-4 border-t border-[var(--line)]">
+                  <ul className="space-y-3 pt-6 border-t border-[var(--line)]">
                     {plan.features.map((feat) => (
                       <li key={feat} className="flex items-start gap-3 text-sm text-[var(--muted)]">
-                        <div className="w-4 h-4 rounded-full bg-[var(--tint)] flex items-center justify-center shrink-0 mt-0.5">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5"
+                          style={{ background: "var(--tint)" }}>
                           <Check className="w-3 h-3 text-[var(--brand)] stroke-[3]" />
                         </div>
                         <span>{feat}</span>
@@ -176,15 +197,19 @@ export function Pricing() {
                   </ul>
                 </div>
 
-                {/* Card CTA Button */}
-                <div className="mt-8 pt-4">
+                {/* CTA Button */}
+                <div className="px-8 pb-8">
                   <Link
                     href="/create-store"
-                    className={`w-full py-3.5 px-6 rounded-full font-semibold text-sm text-center inline-flex items-center justify-center gap-2 transition-all active:scale-95 ${
+                    className={`w-full py-4 px-6 rounded-full font-bold text-sm text-center inline-flex items-center justify-center gap-2 transition-all active:scale-95 ${
                       plan.popular
-                        ? "text-white bg-gradient-to-r from-[var(--brand)] to-[var(--brand2)] shadow-lg shadow-purple-900/30 hover:opacity-95"
-                        : "border border-[var(--line)] text-[var(--ink)] bg-[var(--surface)] hover:border-[var(--brand)] hover:bg-[var(--tint)]"
+                        ? "text-white shadow-lg"
+                        : "border border-[var(--line)] text-[var(--ink)] bg-white hover:border-[var(--brand)] hover:bg-[var(--tint)]"
                     }`}
+                    style={plan.popular ? {
+                      background: "linear-gradient(135deg, #5b21b6, #a855f7)",
+                      boxShadow: "0 16px 32px -8px rgba(91,33,182,0.4)"
+                    } : {}}
                   >
                     <span>{plan.buttonText}</span>
                     <ArrowRight className="w-4 h-4" />
@@ -193,6 +218,16 @@ export function Pricing() {
               </div>
             );
           })}
+        </div>
+
+        {/* Trust strip */}
+        <div className="mt-12 text-center">
+          <p className="text-sm text-[var(--muted)] flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-500" /> No setup fees</span>
+            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-500" /> Cancel anytime</span>
+            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-500" /> 14-day free trial</span>
+            <span className="flex items-center gap-1.5"><Check className="w-4 h-4 text-emerald-500" /> No credit card required</span>
+          </p>
         </div>
       </div>
     </section>
