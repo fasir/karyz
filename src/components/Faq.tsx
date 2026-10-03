@@ -51,7 +51,7 @@ export function Faq() {
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
         style={{ backgroundImage: "radial-gradient(circle at 80% 20%, rgba(91,33,182,0.06) 0%, transparent 45%)" }} />
 
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Left: Sticky header */}
           <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-6">

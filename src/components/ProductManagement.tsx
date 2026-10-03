@@ -54,7 +54,7 @@ export function ProductManagement() {
 
   return (
     <section id="products" className="py-20 md:py-28 bg-[var(--surface)] border-t border-[var(--line)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
           <div>
             <span className="text-xs sm:text-sm font-semibold text-[var(--brand)] uppercase tracking-wider block mb-2">

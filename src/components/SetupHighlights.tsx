@@ -31,7 +31,7 @@ export function SetupHighlights() {
 
   return (
     <section id="promise" className="py-20 md:py-28 bg-[var(--alt)] border-t border-[var(--line)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="max-w-2xl mx-auto text-center mb-16">
           <span className="text-xs sm:text-sm font-semibold text-[var(--brand)] uppercase tracking-wider block mb-2">
             The good-to-know bits

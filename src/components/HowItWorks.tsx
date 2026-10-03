@@ -4,9 +4,9 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import {
-  UserPlus,
+  Building2,
+  Palette,
   Package,
-  CreditCard,
   Share2,
   TrendingUp,
   ArrowRight,
@@ -26,48 +26,48 @@ interface Step {
 const STEPS: Step[] = [
   {
     id: 1,
-    title: "Create your account",
-    desc: "Sign up, name your store, and upload your logo. Your custom store URL is ready to share immediately.",
-    tags: ["Free trial", "No credit card needed"],
-    icon: <UserPlus className="w-5 h-5" />,
-    img: "/dog_adventure.jpg",
-    imgAlt: "Getting started with your store",
+    title: "Create Your Business",
+    desc: "Set up your business profile, choose your plan and configure your workspace.",
+    tags: ["Business profile", "Choose plan", "Workspace setup"],
+    icon: <Building2 className="w-5 h-5" />,
+    img: "/branded-store.jpg",
+    imgAlt: "Create Your Business",
   },
   {
     id: 2,
-    title: "Add your products",
-    desc: "Upload photos, set prices, and write descriptions, or import your full catalog in bulk via CSV. Each product automatically gets a dedicated SEO page.",
-    tags: ["Bulk import", "SEO-ready pages"],
-    icon: <Package className="w-5 h-5" />,
-    img: "/pet_harness.jpg",
-    imgAlt: "Adding products to your store",
+    title: "Build Your Brand",
+    desc: "Add your logo, brand colors, favicon and custom domain to create your own branded platform.",
+    tags: ["Logo & colors", "Favicon", "Custom domain"],
+    icon: <Palette className="w-5 h-5" />,
+    img: "/branded-store.jpg",
+    imgAlt: "Build Your Brand",
   },
   {
     id: 3,
-    title: "Add payments and shipping",
-    desc: "Connect Stripe, PayPal, or Razorpay with one-click authorization. Set local pickup, flat rate, or free delivery thresholds.",
-    tags: ["Stripe", "PayPal", "Razorpay"],
-    icon: <CreditCard className="w-5 h-5" />,
-    img: "/pet_toys.jpg",
-    imgAlt: "Configure payments",
+    title: "Add Your Products",
+    desc: "Upload your products, categories, pricing and inventory to build your B2B catalogue.",
+    tags: ["Catalogue", "Categories", "Pricing & stock"],
+    icon: <Package className="w-5 h-5" />,
+    img: "/product-catalogue-management.jpg",
+    imgAlt: "Add Your Products",
   },
   {
     id: 4,
-    title: "Share your store",
-    desc: "Add your storefront link to your Instagram bio, TikTok, WhatsApp business catalog, and email marketing signatures.",
-    tags: ["Social links", "WhatsApp", "Email signature"],
+    title: "Set Up Your Distribution",
+    desc: "Connect suppliers, distributors, sub-distributors and retailers and define your distribution network.",
+    tags: ["Suppliers", "Distributors", "Retailers"],
     icon: <Share2 className="w-5 h-5" />,
-    img: "/cat_cozy_bed.jpg",
-    imgAlt: "Share your store",
+    img: "/distribution-management.jpg",
+    imgAlt: "Set Up Your Distribution",
   },
   {
     id: 5,
-    title: "Start getting orders",
-    desc: "Receive real-time notifications when customers place an order. Print packing slips, update tracking numbers, and watch your revenue grow.",
-    tags: ["Real-time alerts", "Order dashboard"],
+    title: "Launch & Grow",
+    desc: "Publish your branded B2B store, receive orders and manage sales, inventory and distribution from one platform.",
+    tags: ["Live orders", "Sales management", "Unified platform"],
     icon: <TrendingUp className="w-5 h-5" />,
-    img: "/dog_adventure.jpg",
-    imgAlt: "Orders coming in",
+    img: "/Reports-Analytics.jpg",
+    imgAlt: "Launch & Grow",
   },
 ];
 
@@ -98,25 +98,24 @@ export function HowItWorks() {
   const activeStepData = STEPS[activeStep - 1];
 
   return (
-    <section id="how" className="py-24 md:py-32 relative overflow-hidden bg-[var(--bg)]">
+    <section id="how" className="py-24 relative overflow-hidden bg-[var(--bg)]">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none" aria-hidden="true"
         style={{ backgroundImage: "radial-gradient(circle at 10% 60%, rgba(91,33,182,0.06) 0%, transparent 40%)" }} />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* ── Left Column: Sticky Panel ── */}
           <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
             <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[var(--brand)] uppercase tracking-widest px-3 py-1.5 rounded-full bg-[var(--tint)]">
-              Live in five steps
+              LAUNCH IN FIVE SIMPLE STEPS
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--ink)] leading-tight">
-              How to create your{" "}
-              <span className="brand-gradient-text">online store</span>
+              Launch your own{" "}
+              <span className="brand-gradient-text">B2B commerce platform</span>
             </h2>
             <p className="text-base sm:text-lg text-[var(--muted)]">
-              From initial sign-up to your very first customer order, every step is fast, intuitive,
-              and requires zero coding knowledge.
+              From setting up your business and brand to launching your online store and distribution network, Karyz brings everything together in one platform.
             </p>
 
             {/* Live preview card */}
@@ -168,11 +167,10 @@ export function HowItWorks() {
                     key={step.id}
                     type="button"
                     onClick={() => setActiveStep(step.id)}
-                    className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all cursor-pointer ${
-                      step.id <= activeStep
-                        ? "text-white scale-110"
-                        : "bg-[var(--line)] text-[var(--muted)]"
-                    }`}
+                    className={`w-6 h-6 rounded-full flex items-center justify-center text-[10px] font-bold transition-all cursor-pointer ${step.id <= activeStep
+                      ? "text-white scale-110"
+                      : "bg-[var(--line)] text-[var(--muted)]"
+                      }`}
                     style={step.id <= activeStep ? { background: "linear-gradient(135deg, #5b21b6, #a855f7)" } : {}}
                   >
                     {step.id < activeStep ? <Check className="w-3 h-3 stroke-[3]" /> : step.id}
@@ -220,13 +218,12 @@ export function HowItWorks() {
                     className="cursor-pointer flex items-start gap-4 sm:gap-6 group transition-all duration-300"
                   >
                     {/* Step Bubble */}
-                    <div className={`relative z-10 w-12 h-12 rounded-2xl shrink-0 flex items-center justify-center font-bold text-sm transition-all duration-300 ${
-                      isCurrent
-                        ? "text-white shadow-lg scale-110"
-                        : isPassed
+                    <div className={`relative z-10 w-12 h-12 rounded-2xl shrink-0 flex items-center justify-center font-bold text-sm transition-all duration-300 ${isCurrent
+                      ? "text-white shadow-lg scale-110"
+                      : isPassed
                         ? "text-[var(--brand)] border-2 border-[var(--brand)]"
                         : "bg-white text-[var(--muted)] border border-[var(--line)] group-hover:border-[var(--brand)] group-hover:text-[var(--brand)]"
-                    }`}
+                      }`}
                       style={isCurrent ? {
                         background: "linear-gradient(135deg, #5b21b6, #a855f7)",
                         boxShadow: "0 12px 24px -6px rgba(91,33,182,0.45)"
@@ -235,11 +232,10 @@ export function HowItWorks() {
                     </div>
 
                     {/* Step Card */}
-                    <div className={`flex-1 p-6 rounded-3xl border transition-all duration-300 ${
-                      isCurrent
-                        ? "bg-white shadow-xl shadow-purple-950/10 sm:translate-x-2"
-                        : "bg-white border-[var(--line)] hover:border-[var(--brand)]/50 shadow-sm"
-                    }`}
+                    <div className={`flex-1 p-6 rounded-3xl border transition-all duration-300 ${isCurrent
+                      ? "bg-white shadow-xl shadow-purple-950/10 sm:translate-x-2"
+                      : "bg-white border-[var(--line)] hover:border-[var(--brand)]/50 shadow-sm"
+                      }`}
                       style={isCurrent ? { borderColor: "rgba(91,33,182,0.4)" } : {}}>
                       <div className="flex items-center justify-between mb-2">
                         <span className="text-xs font-bold text-[var(--brand)] uppercase tracking-wider">

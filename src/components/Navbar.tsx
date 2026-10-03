@@ -21,10 +21,13 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
+    { label: "Home", href: "#top" },
+    { label: "About Us", href: "#about" },
     { label: "Features", href: "#features" },
-    { label: "How it works", href: "#how" },
+    { label: "How It Works", href: "#how" },
     { label: "Pricing", href: "#pricing" },
     { label: "FAQ", href: "#faq" },
+    // { label: "Book a Demo", href: "/create-store" },
   ];
 
   return (
@@ -37,7 +40,7 @@ export function Navbar() {
       />
 
       <header className="sticky top-0 z-40 bg-[var(--bg)]/90 backdrop-blur-md border-b border-[var(--line)] transition-colors duration-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <nav className="flex items-center justify-between h-18 gap-4">
             {/* Logo */}
             <Link
@@ -58,12 +61,12 @@ export function Navbar() {
             </Link>
 
             {/* Desktop Navigation Links */}
-            <ul className="hidden md:flex items-center gap-8 text-[15px] font-medium text-[var(--muted)]">
+            <ul className="hidden lg:flex items-center gap-5 xl:gap-7 text-[14px] xl:text-[15px] font-medium text-[var(--muted)]">
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="hover:text-[var(--ink)] transition-colors duration-200 hover:scale-105 inline-block py-1"
+                    className="hover:text-[var(--ink)] transition-colors duration-200 hover:scale-105 inline-block py-1 whitespace-nowrap"
                   >
                     {link.label}
                   </Link>
@@ -73,18 +76,18 @@ export function Navbar() {
 
             {/* Account and store actions */}
             <div className="flex items-center gap-3">
-              <Link
+              {/* <Link
                 href="#products"
                 className="hidden sm:inline-flex items-center px-4 py-2 text-sm font-semibold rounded-full border border-[var(--line)] text-[var(--ink)] hover:border-[var(--brand)] hover:bg-[var(--tint)] transition-all"
               >
                 Login
-              </Link>
+              </Link> */}
 
               <Link
                 href="/create-store"
                 className="inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold rounded-full text-white bg-gradient-to-r from-[var(--brand)] to-[var(--brand2)] shadow-md hover:shadow-purple-500/25 hover:opacity-95 active:scale-95 transition-all"
               >
-                <span>Create store</span>
+                <span>Book a Demo</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </Link>
 
@@ -92,7 +95,7 @@ export function Navbar() {
               <button
                 type="button"
                 onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-xl border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--tint)] transition-colors"
+                className="lg:hidden p-2 rounded-xl border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] hover:bg-[var(--tint)] transition-colors"
                 aria-label="Toggle mobile menu"
                 aria-expanded={isOpen}
               >
@@ -104,7 +107,7 @@ export function Navbar() {
 
         {/* Mobile Dropdown Menu */}
         {isOpen && (
-          <div className="md:hidden border-t border-[var(--line)] bg-[var(--surface)] px-4 py-5 shadow-2xl animate-in slide-in-from-top-2 duration-200">
+          <div className="lg:hidden border-t border-[var(--line)] bg-[var(--surface)] px-4 py-5 shadow-2xl animate-in slide-in-from-top-2 duration-200">
             <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link

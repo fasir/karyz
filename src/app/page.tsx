@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
+import { ProductCatalogue } from "@/components/ProductCatalogue";
 
 
 import { StoreDesignFeatures } from "@/components/StoreDesignFeatures";
@@ -12,6 +13,7 @@ import { MobileShowcase } from "@/components/MobileShowcase";
 import { HowItWorks } from "@/components/HowItWorks";
 import { BentoGrid } from "@/components/BentoGrid";
 import { Pricing } from "@/components/Pricing";
+import { PaymentMethods } from "@/components/PaymentMethods";
 
 export default function Home() {
   return (
@@ -19,14 +21,18 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <MobileShowcase />
+        <ProductCatalogue />
+        {/* <MobileShowcase /> */}
         <BentoGrid />
-  <HowItWorks />
+        <HowItWorks />
 
-        <StoreDesignFeatures />
+        {/* <StoreDesignFeatures /> */}
         <Pricing />
         {/* <SetupHighlights /> */}
         <Faq />
+
+        <PaymentMethods />
+
         <CtaSection />
       </main>
       <Footer />

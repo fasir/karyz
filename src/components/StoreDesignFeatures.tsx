@@ -45,7 +45,7 @@ export function StoreDesignFeatures() {
           backgroundImage: "radial-gradient(circle at 75% 30%, rgba(168,85,247,0.08) 0%, transparent 45%)",
         }} />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-20">
           {/* Left: Text content */}
           <div>

@@ -64,7 +64,7 @@ export function Hero() {
             <span className="ml-1 hidden h-px w-10 bg-[var(--brand)]/35 sm:block" />
           </div>
 
-          <h1 className="text-[clamp(2.7rem,5.1vw,4.45rem)] font-bold leading-[1.02] tracking-[-0.055em] text-[var(--ink)]">
+          <h1 className="text-[clamp(2.1rem,3.6vw,3.25rem)] font-bold leading-[1.08] tracking-[-0.035em] text-[var(--ink)]">
             Your Distribution
             <br />
             Business.

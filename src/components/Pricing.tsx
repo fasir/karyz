@@ -86,7 +86,7 @@ export function Pricing() {
           opacity: 0.5,
         }} />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
         {/* Header */}
         <div className="max-w-2xl mx-auto text-center mb-14">
           <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[var(--brand)] uppercase tracking-widest mb-3 px-3 py-1.5 rounded-full bg-[var(--tint)]">

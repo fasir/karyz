@@ -17,7 +17,7 @@ export function MobileShowcase() {
           backgroundImage: "radial-gradient(circle at 20% 50%, rgba(91,33,182,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(168,85,247,0.06) 0%, transparent 40%)"
         }} />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Section Heading */}
         <div className="max-w-2xl mx-auto text-center mb-6">
           <span className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-bold text-[var(--brand)] uppercase tracking-widest mb-3 px-3 py-1.5 rounded-full bg-[var(--tint)]">

@@ -31,7 +31,7 @@ const COLLECTIONS = [
 export function BrandGallery() {
   return (
     <section id="collections" className="py-20 md:py-28 bg-[var(--alt)] border-t border-[var(--line)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10">
           <div className="max-w-2xl">
             <span className="text-xs sm:text-sm font-semibold text-[var(--brand)] uppercase tracking-wider block mb-2">

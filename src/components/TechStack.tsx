@@ -16,7 +16,7 @@ export function TechStack() {
 
   return (
     <section className="py-20 md:py-28 bg-[var(--alt)] border-t border-[var(--line)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* Left Column: Heading & Points */}
           <div className="lg:col-span-6 space-y-6">

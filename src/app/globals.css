@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: var(--font-bricolage), "DM Sans", system-ui, sans-serif;
-  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-outfit), "Outfit", sans-serif;
+  --font-sans: var(--font-outfit), "Outfit", sans-serif;
 
   --color-brand: var(--brand);
   --color-brand-secondary: var(--brand2);

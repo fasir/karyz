@@ -159,7 +159,7 @@ const PAYMENT_METHODS = [
 export function PaymentMarquee() {
   return (
     <section className="py-20 md:py-24 bg-[var(--surface)] border-y border-[var(--line)]">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
         {/* Main Section Heading */}
         <h2 className="text-3xl sm:text-5xl md:text-5xl font-extrabold text-[var(--ink)] tracking-tight">
           So many ways to <span className="text-[#108A00] font-black">pay!</span>
