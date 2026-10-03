@@ -1,243 +1,240 @@
-"use client";
-
-import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { ShoppingCart, Sparkles, ArrowRight, PawPrint, Bone, House, Fish, Star, TrendingUp } from "lucide-react";
+import {
+  ArrowRight,
+  Bell,
+  Boxes,
+  ChartNoAxesCombined,
+  ClipboardList,
+  LayoutDashboard,
+  Package,
+  Search,
+  Settings,
+  ShoppingCart,
+  Sparkles,
+  UsersRound,
+} from "lucide-react";
 
-const STATS = [
-  { value: "12K+", label: "Happy pets" },
-  { value: "4.9★", label: "Avg. rating" },
-  { value: "Free", label: "Ship over $50" },
+const NAV_ITEMS = [
+  { label: "Overview", icon: LayoutDashboard, active: true },
+  { label: "Products", icon: Package, active: false },
+  { label: "Orders", icon: ClipboardList, active: false },
+  { label: "Inventory", icon: Boxes, active: false },
+  { label: "Partners", icon: UsersRound, active: false },
+  { label: "Reports", icon: ChartNoAxesCombined, active: false },
+  { label: "Settings", icon: Settings, active: false },
 ];
 
+const METRICS = [
+  { label: "Total Revenue", value: "$128,430", change: "+12.8%", icon: ChartNoAxesCombined },
+  { label: "Total Orders", value: "1,284", change: "+8.2%", icon: ClipboardList },
+  { label: "Active Partners", value: "248", change: "+5.4%", icon: UsersRound },
+  { label: "Products", value: "1,842", change: "+3.1%", icon: Package },
+];
+
+const CHART_BARS = [34, 48, 40, 57, 46, 63, 52, 70, 58, 76, 62, 84, 68, 78, 65, 92, 73, 86, 70, 100];
+
 export function Hero() {
-  const [cartCount, setCartCount] = useState<number>(0);
-  const [recentlyAdded, setRecentlyAdded] = useState<string | null>(null);
-
-  const handleAddToCart = (productName: string) => {
-    setCartCount((prev) => prev + 1);
-    setRecentlyAdded(productName);
-    setTimeout(() => setRecentlyAdded(null), 1800);
-  };
-
   return (
     <section
       id="top"
-      className="relative pt-16 pb-0 md:pt-24 overflow-hidden"
+      className="relative overflow-hidden bg-[var(--bg)] pt-12 pb-14 sm:pt-16 md:pb-20"
       style={{
-        background: "linear-gradient(160deg, #f5efff 0%, #faf8ff 40%, #ede9fe 100%)",
+        backgroundImage:
+          "radial-gradient(ellipse at 82% 42%, color-mix(in srgb, var(--brand) 10%, transparent), transparent 48%), linear-gradient(115deg, var(--surface) 0%, var(--bg) 58%, var(--tint) 100%)",
       }}
     >
-      {/* Background ambient orbs */}
-      <div
-        className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(91,33,182,0.15) 0%, transparent 70%)" }}
-        aria-hidden="true"
-      />
-      <div
-        className="absolute top-1/2 -right-40 w-[450px] h-[450px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)" }}
-        aria-hidden="true"
-      />
-      {/* Dot grid */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(var(--line) 1px, transparent 1px)",
-          backgroundSize: "28px 28px",
-          maskImage: "linear-gradient(to bottom, rgba(0,0,0,0.5), transparent 75%)",
-        }}
-        aria-hidden="true"
-      />
+      <div className="pointer-events-none absolute inset-0 opacity-40" aria-hidden="true">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: "radial-gradient(var(--line) 0.8px, transparent 0.8px)",
+            backgroundSize: "24px 24px",
+            maskImage: "linear-gradient(to bottom, black, transparent 78%)",
+          }}
+        />
+      </div>
 
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Top badge */}
-        <div className="flex justify-center mb-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs sm:text-sm font-semibold text-[var(--brand)] border border-[var(--brand)]/30 shadow-sm"
-            style={{ background: "rgba(91,33,182,0.06)", backdropFilter: "blur(8px)" }}>
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Thoughtful essentials for every kind of companion</span>
+      <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-8 lg:grid-cols-[0.88fr_1.12fr] lg:gap-6 xl:px-10">
+        <div className="relative z-10 max-w-xl">
+          <div className="mb-7 inline-flex items-center gap-2.5 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--brand)] sm:text-[11px]">
+            <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--tint)]">
+              <Sparkles className="h-3.5 w-3.5" />
+            </span>
+            <span>The future of B2B commerce</span>
+            <span className="ml-1 hidden h-px w-10 bg-[var(--brand)]/35 sm:block" />
           </div>
-        </div>
 
-        {/* Hero title */}
-        <div className="text-center max-w-4xl mx-auto">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight text-[var(--ink)] leading-[1.04]">
-            The easiest{" "}
-            <span className="brand-gradient-text">online store</span>
-            <br />builder
+          <h1 className="text-[clamp(2.7rem,5.1vw,4.45rem)] font-bold leading-[1.02] tracking-[-0.055em] text-[var(--ink)]">
+            Your Distribution
+            <br />
+            Business.
+            <br />
+            <span className="brand-gradient-text not-italic">Your Brand.</span>
+            <br />
+            Your Online Store.
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-[var(--muted)] max-w-2xl mx-auto leading-relaxed">
-            Discover everyday pet accessories made for comfort, curious noses, and all the little adventures together.
+
+          <p className="mt-6 max-w-lg text-base leading-7 text-[var(--muted)] sm:text-[17px] sm:leading-7">
+            The all-in-one white-label platform to run your B2B commerce and distribution network. Sell smarter, scale faster, and make every customer experience unmistakably yours.
           </p>
 
-          {/* CTAs */}
-          <div className="mt-10 flex flex-wrap gap-4 justify-center items-center">
-            <Link
-              href="#collections"
-              className="px-7 py-4 rounded-full text-base font-semibold border border-[var(--line)] bg-white/80 text-[var(--ink)] hover:border-[var(--brand)] hover:bg-white hover:shadow-lg transition-all active:scale-95"
-            >
-              Preview a store
-            </Link>
+          <div className="mt-8 flex flex-wrap gap-3">
             <Link
               href="/create-store"
-              className="magnetic-btn px-8 py-4 rounded-full text-base font-semibold text-white inline-flex items-center gap-2.5 shadow-2xl"
-              style={{ background: "linear-gradient(135deg, #5b21b6, #a855f7)", boxShadow: "0 20px 40px -12px rgba(91,33,182,0.45)" }}
+              className="inline-flex min-h-13 items-center justify-center gap-3 rounded-lg bg-[var(--brand)] px-6 py-3 text-sm font-bold text-white shadow-lg shadow-[var(--brand)]/20 transition hover:-translate-y-0.5 hover:shadow-xl"
             >
-              <span>Create your store</span>
-              <ArrowRight className="w-4 h-4" />
+              Book a Demo
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="#features"
+              className="inline-flex min-h-13 items-center justify-center gap-3 rounded-lg border border-[var(--line)] bg-[var(--surface)] px-6 py-3 text-sm font-bold text-[var(--ink)] transition hover:border-[var(--brand)]/50 hover:bg-[var(--tint)]"
+            >
+              Explore Features
+              <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
-          {/* Social proof stats */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-6 sm:gap-8">
-            {STATS.map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center">
-                <span className="text-xl sm:text-2xl font-bold text-[var(--ink)]">{stat.value}</span>
-                <span className="text-xs text-[var(--muted)] font-medium">{stat.label}</span>
-              </div>
-            ))}
-            {/* Reviews row */}
-            <div className="flex items-center gap-1.5">
-              <div className="flex">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 text-amber-400 fill-amber-400" />
-                ))}
-              </div>
-              <span className="text-sm font-medium text-[var(--muted)]">2,400+ reviews</span>
+          <div className="mt-10 flex items-center gap-3">
+            <div className="flex -space-x-2">
+              {[
+                { initials: "JD", tone: "bg-[var(--tint)]" },
+                { initials: "AR", tone: "bg-rose-100" },
+                { initials: "MK", tone: "bg-emerald-100" },
+              ].map((person) => (
+                <span
+                  key={person.initials}
+                  className={`flex h-8 w-8 items-center justify-center rounded-full border-2 border-[var(--surface)] text-[9px] font-bold text-[var(--ink)] ${person.tone}`}
+                >
+                  {person.initials}
+                </span>
+              ))}
+              <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-[var(--surface)] bg-[var(--brand)] text-sm font-semibold text-white">
+                +
+              </span>
+            </div>
+            <div className="text-xs leading-5">
+              <p className="font-bold text-[var(--ink)]">Built for the way business moves.</p>
+              <p className="text-[var(--muted)]">One platform. Every part of your network.</p>
             </div>
           </div>
         </div>
 
-        {/* ── Full-width interactive store mockup ── */}
-        <div className="relative mt-16 max-w-4xl mx-auto" id="demo">
-          {/* Floating Badges */}
-          <div
-            className="hidden sm:flex absolute -top-5 right-4 z-20 items-center gap-2.5 px-4 py-2.5 text-xs sm:text-sm font-medium shadow-xl rounded-2xl animate-float"
-            style={{ background: "rgba(255,255,255,0.9)", backdropFilter: "blur(12px)", border: "1px solid rgba(91,33,182,0.15)" }}
-            aria-hidden="true"
-          >
-            <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>
-              <strong className="text-[var(--brand)] font-semibold">Just in</strong>{" "}
-              Trail-ready harness · $32
-            </span>
-          </div>
-
-          <div
-            className="hidden sm:flex absolute -bottom-4 left-4 z-20 items-center gap-2.5 px-4 py-2.5 text-xs sm:text-sm font-medium shadow-xl rounded-2xl animate-float-delayed"
-            style={{ background: "rgba(255,255,255,0.9)", backdropFilter: "blur(12px)", border: "1px solid rgba(91,33,182,0.15)" }}
-            aria-hidden="true"
-          >
-            <div className="w-6 h-6 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs">✓</div>
-            <span>
-              <strong className="text-[var(--brand)] font-semibold">Made for</strong> daily adventures
-            </span>
-          </div>
-
-          {/* ── Live Store Card ── */}
-          <div
-            className="relative text-left rounded-[28px] overflow-hidden shadow-2xl"
-            style={{ border: "1px solid rgba(91,33,182,0.15)", background: "rgba(255,255,255,0.85)", backdropFilter: "blur(20px)" }}
-          >
-            {/* Browser chrome bar */}
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--line)] bg-white/60">
-              <div className="flex gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-[#FF5F56]" />
-                <span className="w-3 h-3 rounded-full bg-[#FFBD2E]" />
-                <span className="w-3 h-3 rounded-full bg-[#27C93F]" />
-              </div>
-              <div className="flex-1 mx-3 bg-[var(--tint)] border border-[var(--line)] rounded-lg py-1.5 px-3 flex items-center gap-1.5 text-xs text-[var(--muted)]">
-                <svg viewBox="0 0 24 24" className="w-3 h-3 text-emerald-600 shrink-0" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
-                <span className="font-medium">pawwhisker.store.link</span>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-semibold text-[var(--muted)]">
-                <ShoppingCart className="w-4 h-4" />
-                <span>Cart ({cartCount})</span>
-              </div>
-            </div>
-
-            {/* Store Hero Banner with actual photo */}
-            <div className="relative h-40 sm:h-52 overflow-hidden">
-              <Image
-                src="/dog_adventure.jpg"
-                alt="Happy dog on adventure"
-                fill
-                unoptimized
-                loading="eager"
-                sizes="(max-width: 768px) 100vw, 900px"
-                className="object-cover object-center"
-              />
-              {/* Dark gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[var(--brand)]/80 via-[var(--brand)]/50 to-transparent" />
-              <div className="absolute inset-0 flex items-center px-6 sm:px-8">
-                <div className="text-white">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-purple-200 mb-1">New arrivals</p>
-                  <h3 className="font-display font-bold text-2xl sm:text-3xl leading-tight">
-                    Everyday adventures.
-                    <br />
-                    <span className="text-white/80 text-lg sm:text-xl font-normal">Free shipping over $50.</span>
-                  </h3>
-                  <div className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold bg-white/20 px-3 py-1.5 rounded-full backdrop-blur-sm">
-                    <TrendingUp className="w-3 h-3" /> Shop bestsellers
-                  </div>
+        <div className="relative mx-auto w-full max-w-[760px] lg:py-10">
+          <div className="absolute inset-8 rounded-[2rem] bg-[var(--brand)]/10 blur-3xl" aria-hidden="true" />
+          <div className="relative lg:-rotate-2">
+            <div className="overflow-hidden rounded-xl border border-[var(--line)] bg-[var(--surface)] shadow-[0_30px_80px_-28px_var(--glow)]">
+              <div className="flex h-12 items-center gap-2 border-b border-[var(--line)] px-4 sm:px-5">
+                <div className="flex min-w-0 flex-1 items-center gap-2 text-[10px] font-semibold text-[var(--muted)] sm:text-xs">
+                  <span className="truncate">Northstar Supply</span>
+                  <span className="text-[var(--line)]">/</span>
+                  <span className="text-[var(--ink)]">Dashboard</span>
                 </div>
-                <div className="ml-auto hidden sm:block">
-                  <PawPrint className="w-20 h-20 text-white/20 animate-float" strokeWidth={1.2} />
-                </div>
+                <Search className="h-4 w-4 text-[var(--muted)]" />
+                <Bell className="ml-2 h-4 w-4 text-[var(--muted)]" />
+                <span className="ml-2 flex h-7 w-7 items-center justify-center rounded-full bg-[var(--tint)] text-[9px] font-bold text-[var(--brand)]">JD</span>
               </div>
-            </div>
 
-            {/* Products Grid */}
-            <div className="p-4 grid grid-cols-2 md:grid-cols-4 gap-3">
-              {[
-                { name: "Trail harness", price: "$32", icon: <PawPrint className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />, badge: "New" },
-                { name: "Soft chew toy", price: "$16", icon: <Bone className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />, badge: null },
-                { name: "Cozy pet bed", price: "$58", icon: <House className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />, badge: "Popular" },
-                { name: "Slow-feeder bowl", price: "$24", icon: <Fish className="w-full h-full text-[var(--brand)]" strokeWidth={1.5} />, badge: null },
-              ].map((item) => (
-                <div
-                  key={item.name}
-                  className="relative bg-white border border-[var(--line)] rounded-2xl p-3 text-xs group hover:border-[var(--brand)]/50 hover:shadow-lg transition-all duration-200 cursor-pointer"
-                >
-                  {item.badge && (
-                    <span className="absolute -top-2 right-2 z-10 text-[9px] font-bold px-2 py-0.5 rounded-full text-white"
-                      style={{ background: "linear-gradient(135deg, #5b21b6, #a855f7)" }}>
-                      {item.badge}
+              <div className="flex min-h-[340px] sm:min-h-[390px]">
+                <aside className="hidden w-[150px] shrink-0 border-r border-[var(--line)] p-3 sm:block">
+                  <div className="mb-5 flex items-center gap-2 rounded-md border border-[var(--line)] p-2">
+                    <span className="flex h-7 w-7 items-center justify-center rounded bg-[var(--brand)] text-xs font-bold text-white">N</span>
+                    <span className="min-w-0">
+                      <span className="block truncate text-[9px] font-bold text-[var(--ink)]">Northstar Supply</span>
+                      <span className="block text-[8px] text-[var(--muted)]">Enterprise workspace</span>
                     </span>
-                  )}
-                  <div className="h-16 sm:h-20 rounded-xl bg-[var(--tint)] flex items-center justify-center p-2 mb-2.5 group-hover:scale-105 transition-transform duration-200">
-                    {item.icon}
                   </div>
-                  <div className="flex items-center justify-between">
-                    <b className="font-semibold text-[var(--ink)] truncate text-[11px]">{item.name}</b>
-                    <span className="text-[var(--brand)] font-bold text-[11px]">{item.price}</span>
+                  <p className="mb-2 px-2 text-[8px] font-bold uppercase tracking-widest text-[var(--muted)]">Workspace</p>
+                  <nav className="space-y-1" aria-label="Dashboard preview">
+                    {NAV_ITEMS.map(({ label, icon: Icon, active }) => (
+                      <div
+                        key={label}
+                        className={`flex items-center gap-2 rounded-md px-2 py-2 text-[9px] font-semibold ${
+                          active ? "bg-[var(--tint)] text-[var(--brand)]" : "text-[var(--muted)]"
+                        }`}
+                      >
+                        <Icon className="h-3.5 w-3.5" />
+                        {label}
+                      </div>
+                    ))}
+                  </nav>
+                  <div className="mt-6 border-t border-[var(--line)] pt-3 text-[9px] font-semibold text-[var(--ink)]">Jordan Davis</div>
+                  <p className="pl-2 text-[8px] text-[var(--muted)]">Admin</p>
+                </aside>
+
+                <div className="min-w-0 flex-1 p-3 sm:p-5">
+                  <div className="mb-4 flex items-start justify-between gap-2">
+                    <div>
+                      <p className="text-sm font-bold text-[var(--ink)] sm:text-base">Good morning, Jordan</p>
+                      <p className="mt-1 text-[9px] text-[var(--muted)] sm:text-[10px]">Here&apos;s what&apos;s happening with your business today.</p>
+                    </div>
+                    <span className="shrink-0 rounded-md border border-[var(--line)] px-2 py-1.5 text-[8px] text-[var(--muted)] sm:text-[9px]">Last 30 days</span>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => handleAddToCart(item.name)}
-                    className="mt-2 w-full py-1.5 text-[10px] font-bold rounded-lg transition-all cursor-pointer"
-                    style={
-                      recentlyAdded === item.name
-                        ? { background: "linear-gradient(135deg, #059669, #10b981)", color: "white" }
-                        : { background: "var(--tint)", color: "var(--brand)" }
-                    }
-                  >
-                    {recentlyAdded === item.name ? "Added ✓" : "+ Add to bag"}
-                  </button>
+
+                  <div className="grid grid-cols-2 gap-2 xl:grid-cols-4">
+                    {METRICS.map(({ label, value, change, icon: Icon }) => (
+                      <div key={label} className="min-w-0 rounded-lg border border-[var(--line)] p-2 sm:p-2.5">
+                        <div className="mb-2 flex items-center justify-between gap-1">
+                          <span className="truncate text-[8px] font-medium text-[var(--muted)] sm:text-[9px]">{label}</span>
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded bg-[var(--tint)] text-[var(--brand)]">
+                            <Icon className="h-3 w-3" />
+                          </span>
+                        </div>
+                        <p className="truncate text-sm font-bold text-[var(--ink)] sm:text-base">{value}</p>
+                        <p className="mt-1 text-[8px] font-semibold text-emerald-600">↗ {change} <span className="font-normal text-[var(--muted)]">vs last month</span></p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-3 grid grid-cols-[1.55fr_1fr] gap-2">
+                    <div className="rounded-lg border border-[var(--line)] p-3">
+                      <div className="flex items-start justify-between">
+                        <div>
+                          <p className="text-[9px] font-bold text-[var(--ink)] sm:text-[10px]">Revenue overview</p>
+                          <p className="mt-1 text-[8px] text-[var(--muted)]">Track your sales performance</p>
+                        </div>
+                        <span className="text-xs text-[var(--muted)]">···</span>
+                      </div>
+                      <div className="mt-3 flex h-[100px] items-end gap-[3px] border-b border-dashed border-[var(--line)] px-1 sm:h-[126px] sm:gap-1">
+                        {CHART_BARS.map((height, index) => (
+                          <span
+                            key={`${height}-${index}`}
+                            className={`min-w-0 flex-1 rounded-t-[2px] ${index % 3 === 0 ? "bg-[var(--brand2)]/35" : "bg-[var(--brand)]/80"}`}
+                            style={{ height: `${height}%` }}
+                          />
+                        ))}
+                      </div>
+                      <div className="mt-2 flex justify-between text-[7px] text-[var(--muted)] sm:text-[8px]">
+                        <span>Jan</span><span>Mar</span><span>May</span><span>Jul</span><span>Sep</span><span>Nov</span>
+                      </div>
+                    </div>
+
+                    <div className="rounded-lg border border-[var(--line)] p-3">
+                      <p className="text-[9px] font-bold text-[var(--ink)] sm:text-[10px]">Sales by channel</p>
+                      <p className="mt-1 text-[8px] text-[var(--muted)]">Revenue distribution</p>
+                      <div className="mx-auto mt-4 flex aspect-square w-[72px] items-center justify-center rounded-full sm:w-[94px]" style={{ background: "conic-gradient(var(--brand) 0 72%, var(--brand2) 72% 91%, var(--tint) 91% 100%)" }}>
+                        <div className="flex h-[48px] w-[48px] items-center justify-center rounded-full bg-[var(--surface)] text-[8px] font-bold text-[var(--ink)] sm:h-[64px] sm:w-[64px]">$128K</div>
+                      </div>
+                      <div className="mt-3 space-y-1 text-[7px] text-[var(--muted)] sm:text-[8px]">
+                        <p><span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[var(--brand)]" />Wholesale <span className="float-right">72%</span></p>
+                        <p><span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[var(--brand2)]" />Online <span className="float-right">19%</span></p>
+                        <p><span className="mr-1 inline-block h-1.5 w-1.5 rounded-full bg-[var(--tint)]" />Direct <span className="float-right">9%</span></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              </div>
+            </div>
+
+            <div className="animate-float absolute -left-3 top-3 z-10 hidden items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl sm:flex sm:-left-8 sm:top-0">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600"><ChartNoAxesCombined className="h-4 w-4" /></span>
+              <span><span className="block text-[8px] text-[var(--muted)]">Revenue growth</span><strong className="text-sm text-[var(--ink)]">+24.8%</strong></span>
+            </div>
+            <div className="animate-float-delayed absolute -bottom-5 right-2 z-10 hidden items-center gap-3 rounded-xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl sm:flex sm:right-0">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--tint)] text-[var(--brand)]"><ShoppingCart className="h-4 w-4" /></span>
+              <span><span className="block text-[8px] text-[var(--muted)]">New order received</span><strong className="text-sm text-[var(--ink)]">$2,450.00</strong><span className="ml-2 text-[8px] text-emerald-600">Just now</span></span>
             </div>
           </div>
-
-          {/* Bottom fade into next section */}
-          <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
-            style={{ background: "linear-gradient(to bottom, transparent, var(--bg))" }} />
         </div>
       </div>
     </section>
