@@ -2,6 +2,8 @@ import React from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { ProductCatalogue } from "@/components/ProductCatalogue";
+import { DistributionChallenge } from "@/components/DistributionChallenge";
+import { NetworkLevels } from "@/components/NetworkLevels";
 
 
 import { StoreDesignFeatures } from "@/components/StoreDesignFeatures";
@@ -21,10 +23,13 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
-        <ProductCatalogue />
+        {/* <ProductCatalogue /> */}
+        <DistributionChallenge />
+        <NetworkLevels />
+        {/* <NetworkLevels /> */}
         {/* <MobileShowcase /> */}
-        <BentoGrid />
-        <HowItWorks />
+       <BentoGrid />  
+        {/* <HowItWorks /> */}
 
         {/* <StoreDesignFeatures /> */}
         <Pricing />

@@ -51,7 +51,7 @@ export function ProductCatalogue() {
         {/* ── Section header ── */}
         <div className="mx-auto mb-10 max-w-2xl text-center">
           <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[var(--tint)] px-3 py-1.5 text-xs font-bold uppercase tracking-widest text-[var(--brand)] sm:text-sm">
-            Product Catalogue
+            Product Cataloguevvae
           </span>
           <h2 className="text-3xl font-bold leading-tight text-[var(--ink)] sm:text-4xl md:text-5xl">
             Turn Your Product Catalogue{" "}
@@ -63,7 +63,7 @@ export function ProductCatalogue() {
         </div>
 
         {/* ── Feature pills ── */}
-        <div className="mb-12 flex flex-wrap items-center justify-center gap-2.5">
+        {/* <div className="mb-12 flex flex-wrap items-center justify-center gap-2.5">
           {FEATURE_PILLS.map(({ icon: Icon, label }) => (
             <span
               key={label}
@@ -73,7 +73,7 @@ export function ProductCatalogue() {
               {label}
             </span>
           ))}
-        </div>
+        </div> */}
 
         {/* ── Centred catalogue UI with store front website landing page ── */}
         <div className="relative mx-auto w-full max-w-5xl">
@@ -88,7 +88,7 @@ export function ProductCatalogue() {
             {/* Storefront Website Landing Page Image */}
             <div className="relative aspect-[1024/571] w-full overflow-hidden bg-[var(--surface)]">
               <Image
-                src="/abc-storefront.png"
+                src="/store.jpg"
                 alt="ABC Distribution Storefront Landing Page"
                 width={1024}
                 height={571}
@@ -99,28 +99,10 @@ export function ProductCatalogue() {
             </div>
           </div>
 
-          {/* Floating B2B badge — right */}
-          <div className="animate-float absolute -right-3 -top-4 z-10 hidden items-center gap-2.5 rounded-xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl sm:flex">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--tint)] text-[var(--brand)]">
-              <BadgePercent className="h-4 w-4" />
-            </span>
-            <span>
-              <span className="block text-[8px] text-[var(--muted)]">B2B pricing active</span>
-              <strong className="text-sm text-[var(--ink)]">25% trade discount</strong>
-            </span>
-          </div>
+
 
           {/* Floating order badge — left */}
-          <div className="animate-float-delayed absolute -left-3 -bottom-4 z-10 hidden items-center gap-2.5 rounded-xl border border-[var(--line)] bg-[var(--surface)] p-3 shadow-xl sm:flex">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">
-              <ShoppingCart className="h-4 w-4" />
-            </span>
-            <span>
-              <span className="block text-[8px] text-[var(--muted)]">New order placed</span>
-              <strong className="text-sm text-[var(--ink)]">$1,240.00</strong>
-              <span className="ml-2 text-[8px] text-emerald-600">Just now</span>
-            </span>
-          </div>
+
         </div>
 
         {/* ── CTA row ── */}
