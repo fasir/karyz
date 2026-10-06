@@ -36,10 +36,10 @@ export function Hero() {
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
         {/* Release / Feature Badge */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--tint)] border border-[var(--line)] text-xs sm:text-sm font-medium text-[var(--brand)] mb-6 shadow-sm">
+        {/* <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--tint)] border border-[var(--line)] text-xs sm:text-sm font-medium text-[var(--brand)] mb-6 shadow-sm">
           <Sparkles className="w-3.5 h-3.5" />
           <span>Thoughtful essentials for every kind of companion</span>
-        </div>
+        </div> */}
 
         {/* Hero Title */}
         <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-[var(--ink)] max-w-4xl mx-auto leading-[1.08]">
@@ -47,12 +47,12 @@ export function Hero() {
         </h1>
 
         {/* Hero Description */}
-        <p className="mt-6 text-lg sm:text-xl text-[var(--muted)] max-w-2xl mx-auto leading-relaxed">
+        {/* <p className="mt-6 text-lg sm:text-xl text-[var(--muted)] max-w-2xl mx-auto leading-relaxed">
           Discover everyday pet accessories made for comfort, curious noses, and all the little adventures together.
-        </p>
+        </p> */}
 
         {/* Call to Actions */}
-        <div className="mt-8 flex flex-wrap gap-3.5 justify-center items-center">
+        {/* <div className="mt-8 flex flex-wrap gap-3.5 justify-center items-center">
           <Link
             href="#collections"
             className="px-6 py-3.5 rounded-full text-base font-semibold border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] hover:border-[var(--brand)] hover:shadow-md transition-all active:scale-95"
@@ -66,7 +66,7 @@ export function Hero() {
             <span>Create your own store</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
-        </div>
+        </div> */}
 
         {/* Interactive Store Mockup Demo with Floating Badges */}
         <div className="relative mt-14 max-w-4xl mx-auto" id="demo">
