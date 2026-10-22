@@ -1,391 +1,211 @@
-"use client";
+import type { ReactNode } from "react";
 
-import React from "react";
-import Image from "next/image";
-import { Check, Wand2 } from "lucide-react";
+const FEATURES: { title: string; description: string; visual: ReactNode }[] = [
+  {
+    title: "Partner onboarding and approval",
+    description:
+      "Distributors request to join and you approve or reject each one. Approved distributors can add their own sub-distributors and retailers.",
+    visual: (
+      <div className="space-y-2">
+        <p className="text-[9px] font-medium uppercase tracking-wide text-[var(--muted)]">
+          Request to join
+        </p>
+        <div>
+          <p className="text-[11px] font-semibold text-[var(--ink)]">
+            Malabar Coast Agencies
+          </p>
+          <p className="text-[10px] text-[var(--muted)]">
+            Kannur · wants to be a distributor
+          </p>
+        </div>
+        <div className="grid grid-cols-2 gap-1.5">
+          <span className="rounded-md bg-[var(--brand)] py-1 text-center text-[10px] font-semibold text-white">
+            Approve
+          </span>
+          <span className="rounded-md border border-[var(--line)] bg-[var(--surface)] py-1 text-center text-[10px] font-semibold text-[var(--ink)]">
+            Reject
+          </span>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Price control at every level",
+    description:
+      "Every buyer sees only the price of the level directly above them — never your supplier cost or anyone else's margin.",
+    visual: (
+      <div className="divide-y divide-[var(--line)]">
+        {[
+          ["Brand price", "seen by distributors", "₹210"],
+          ["Distributor price", "seen by sub-distributors", "₹224"],
+          ["Sub-distributor price", "seen by retailers", "₹248"],
+        ].map(([label, detail, price]) => (
+          <div
+            key={label}
+            className="flex items-center justify-between gap-2 py-1.5 first:pt-0 last:pb-0"
+          >
+            <div>
+              <p className="text-[11px] font-semibold text-[var(--ink)]">{label}</p>
+              <p className="text-[10px] text-[var(--muted)]">{detail}</p>
+            </div>
+            <p className="text-[11px] font-semibold text-[var(--ink)]">{price}</p>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  {
+    title: "Order management",
+    description:
+      "Orders from the level below arrive in one list and move from placed to delivered, with delivery confirmation.",
+    visual: (
+      <div className="space-y-2">
+        {[
+          ["#TW-1042 · Green Leaf", "New"],
+          ["#TW-1041 · Al Noor Grocery", "Packed"],
+          ["#TW-1039 · Fresh Basket", "Delivered"],
+        ].map(([order, status]) => (
+          <div
+            key={order}
+            className="flex items-center justify-between gap-2 text-[10px] text-[var(--ink)]"
+          >
+            <span>{order}</span>
+            <span
+              className={`rounded-full px-2 py-0.5 text-[9px] font-semibold ${
+                status === "Delivered"
+                  ? "bg-[var(--brand)] text-white"
+                  : "bg-[var(--tint)] text-[var(--brand)]"
+              }`}
+            >
+              {status}
+            </span>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  {
+    title: "Stock visibility",
+    description:
+      "See stock levels for your products and spot low stock before buyers do.",
+    visual: (
+      <div className="space-y-2">
+        {[
+          ["Kashmiri Chilli 1 kg", "1,240", "w-full"],
+          ["Turmeric 500 g", "860", "w-3/4"],
+          ["Garam Masala 200 g", "92", "w-1/3"],
+        ].map(([product, count, width], index) => (
+          <div key={product}>
+            <div className="mb-1 flex items-center justify-between gap-2 text-[10px]">
+              <span className="truncate text-[var(--ink)]">
+                {product}
+                {index === 2 && (
+                  <span className="ml-1 rounded-full bg-[var(--tint)] px-1.5 py-0.5 text-[9px] font-medium text-[var(--brand)]">
+                    Low
+                  </span>
+                )}
+              </span>
+              <span className="font-semibold text-[var(--ink)]">{count}</span>
+            </div>
+            <div className="h-1 rounded-full bg-[var(--line)]">
+              <div
+                className={`h-full rounded-full ${width} ${
+                  index === 2 ? "bg-[var(--brand2)]" : "bg-[var(--brand)]"
+                }`}
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+  {
+    title: "Online payments at checkout",
+    description:
+      "Buyers pay for their orders online. Razorpay for India, Stripe for the GCC.",
+    visual: (
+      <div className="space-y-2">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-[11px] font-semibold text-[var(--ink)]">
+            Order #TW-1042
+          </p>
+          <p className="text-[11px] font-semibold text-[var(--ink)]">₹9,760</p>
+        </div>
+        <div className="flex flex-wrap gap-1.5">
+          {["UPI", "Card", "Net banking"].map((method) => (
+            <span
+              key={method}
+              className="rounded border border-[var(--line)] bg-[var(--surface)] px-1.5 py-0.5 text-[9px] text-[var(--muted)]"
+            >
+              {method}
+            </span>
+          ))}
+        </div>
+        <span className="inline-block rounded-full bg-[var(--tint)] px-2 py-0.5 text-[9px] font-medium text-[var(--brand)]">
+          Paid online
+        </span>
+      </div>
+    ),
+  },
+  {
+    title: "Network analytics",
+    description:
+      "Orders, revenue and active distributors over time. Advanced analytics on Pro and Enterprise.",
+    visual: (
+      <div className="flex h-[72px] items-end justify-between gap-3 px-2">
+        {[
+          ["Jun", "h-4"],
+          ["Jul", "h-6"],
+          ["Aug", "h-7"],
+          ["Sep", "h-9"],
+          ["Oct", "h-12"],
+        ].map(([month, height], index) => (
+          <div
+            key={month}
+            className="flex flex-1 flex-col items-center justify-end gap-1"
+          >
+            <div
+              className={`w-full max-w-5 rounded-t-[4px] ${
+                index === 4 ? "bg-[var(--brand)]" : "bg-[var(--line)]"
+              } ${height}`}
+            />
+            <span className="text-[9px] text-[var(--muted)]">{month}</span>
+          </div>
+        ))}
+      </div>
+    ),
+  },
+];
 
 export function BentoGrid() {
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-    card.style.setProperty("--my", `${e.clientY - rect.top}px`);
-  };
-
   return (
-    <section id="features" className="py-20 bg-[var(--bg)]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section Heading */}
-        {/* <div className="max-w-2xl mx-auto text-center mb-16">
-          <span className="text-xs sm:text-sm font-semibold text-[var(--brand)] uppercase tracking-wider block mb-2">
-            Engineered For Scale
-          </span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--ink)] leading-tight">
-            Everything you need to start{" "}
-            <span className="brand-gradient-text">selling online</span>
-          </h2>
-          <p className="mt-4 text-base sm:text-lg text-[var(--muted)]">
-            Fast, secure and ready to grow with you from your very first order.
-          </p>
-        </div> */}
-
-        {/* 6-Card Grid (3 columns x 2 rows matching reference design) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* ── CARD 1: Easy product management ── */}
-          <div
-            onPointerMove={handlePointerMove}
-            className="spotlight-card group flex flex-col bg-[var(--surface)] border border-[var(--line)] rounded-[28px] overflow-hidden shadow-xs hover:shadow-xl hover:border-[var(--brand)]/40 transition-all duration-300"
-          >
-            {/* Visual Container */}
-            <div className="h-[250px] bg-slate-50/70 border-b border-[var(--line)] flex items-end justify-center px-5 pt-5 overflow-hidden">
-              <div className="w-full max-w-[280px] bg-white rounded-t-2xl border-t border-x border-[var(--line)] shadow-lg p-4 pb-2 transition-transform duration-300 group-hover:-translate-y-1">
-                {/* Google Sheet icon header */}
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-5 h-6 rounded-[3px] bg-[#0F9D58] flex flex-col items-center justify-center p-1 shadow-xs">
-                    <div className="w-full h-0.5 bg-white/90 rounded-xs mb-0.5" />
-                    <div className="w-full h-0.5 bg-white/90 rounded-xs mb-0.5" />
-                    <div className="w-2/3 h-0.5 bg-white/90 rounded-xs self-start" />
-                  </div>
-                  <div className="h-2 w-16 bg-slate-200 rounded-full" />
-                </div>
-
-                {/* Table Header */}
-                <div className="grid grid-cols-12 text-[10px] font-semibold text-slate-400 pb-1.5 border-b border-slate-100">
-                  <span className="col-span-1">#</span>
-                  <span className="col-span-6">Name</span>
-                  <span className="col-span-3 text-right">Price</span>
-                  <span className="col-span-2 text-right">Qty</span>
-                </div>
-
-                {/* Table Rows */}
-                <div className="space-y-1 mt-1 text-[10px]">
-                  {[
-                    { id: 1, name: "Classic Runner", price: "99.00", qty: "24" },
-                    { id: 2, name: "Air Max 90", price: "85.00", qty: "18" },
-                    { id: 3, name: "Sport Slides", price: "45.00", qty: "32" },
-                    { id: 4, name: "Casual Loafer", price: "120.00", qty: "15" },
-                    { id: 5, name: "Canvas High", price: "65.00", qty: "40" },
-                    { id: 6, name: "Trail Boots", price: "149.00", qty: "8" },
-                  ].map((row) => (
-                    <div
-                      key={row.id}
-                      className="grid grid-cols-12 text-slate-700 py-0.5 hover:bg-slate-50 rounded transition-colors"
-                    >
-                      <span className="col-span-1 text-slate-400">{row.id}</span>
-                      <span className="col-span-6 font-medium truncate">{row.name}</span>
-                      <span className="col-span-3 text-right text-slate-500">{row.price}</span>
-                      <span className="col-span-2 text-right text-slate-500">{row.qty}</span>
-                    </div>
-                  ))}
-                </div>
+    <section
+      id="features"
+      className="border-t border-[var(--line)] bg-[var(--alt)] py-20 md:py-28"
+    >
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map((feature) => (
+            <article
+              key={feature.title}
+              className="group rounded-2xl border border-[var(--line)] bg-[var(--surface)] p-4 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:border-[var(--brand)]/40 hover:shadow-xl"
+            >
+              <div
+                aria-hidden="true"
+                className="flex min-h-28 items-center rounded-xl bg-[var(--bg)] px-4 py-3"
+              >
+                <div className="w-full">{feature.visual}</div>
               </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-7">
-              <h3 className="text-xl font-bold text-[var(--ink)] tracking-tight group-hover:text-[var(--brand)] transition-colors">
-                Easy product management
-              </h3>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                Manage &amp; update products within Google Sheet with a free online store builder.
-              </p>
-            </div>
-          </div>
-
-          {/* ── CARD 2: Brandable URL ── */}
-          <div
-            onPointerMove={handlePointerMove}
-            className="spotlight-card group flex flex-col bg-[var(--surface)] border border-[var(--line)] rounded-[28px] overflow-hidden shadow-xs hover:shadow-xl hover:border-[var(--brand)]/40 transition-all duration-300"
-          >
-            {/* Visual Container */}
-            <div className="h-[250px] bg-slate-50/70 border-b border-[var(--line)] flex items-end justify-center px-5 overflow-hidden">
-              <div className="w-full max-w-[280px] bg-white rounded-t-2xl border-t border-x border-[var(--line)] shadow-lg transition-transform duration-300 group-hover:-translate-y-1">
-                {/* Browser address bar */}
-                <div className="px-3.5 py-2.5 border-b border-slate-100 flex items-center gap-2">
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#FF5F56]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#27C93F]" />
-                  </div>
-
-                  {/* Centered URL pill */}
-                  <div className="flex-1 mx-1 bg-slate-50 border border-slate-200/80 rounded-lg py-1 px-2.5 flex items-center justify-center gap-1.5 shadow-2xs">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="w-3 h-3 text-emerald-600 shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                    >
-                      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                    </svg>
-                    <span className="text-[11px] font-medium text-slate-700">
-                      .store.link
-                    </span>
-                  </div>
-
-                  {/* Hamburger menu */}
-                  <div className="shrink-0 flex flex-col justify-center gap-0.5 w-3.5">
-                    <div className="h-0.5 w-full bg-slate-300 rounded-full" />
-                    <div className="h-0.5 w-full bg-slate-300 rounded-full" />
-                    <div className="h-0.5 w-full bg-slate-300 rounded-full" />
-                  </div>
-                </div>
-
-                {/* Browser inner wireframe */}
-                <div className="p-3.5 space-y-2.5">
-                  <div className="h-14 bg-slate-100 rounded-xl border border-slate-100" />
-                  <div className="grid grid-cols-2 gap-2.5">
-                    <div className="h-16 bg-slate-100 rounded-xl border border-slate-100" />
-                    <div className="h-16 bg-slate-100 rounded-xl border border-slate-100" />
-                  </div>
-                </div>
+              <div className="px-1 pb-1 pt-4">
+                <h3 className="text-lg font-bold leading-snug tracking-tight text-[var(--ink)] transition-colors group-hover:text-[var(--brand)]">
+                  {feature.title}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
+                  {feature.description}
+                </p>
               </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-7">
-              <h3 className="text-xl font-bold text-[var(--ink)] tracking-tight group-hover:text-[var(--brand)] transition-colors">
-                Brandable URL
-              </h3>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                Get your business store.link instantly without buying a domain.
-              </p>
-            </div>
-          </div>
-
-          {/* ── CARD 3: Minimalist templates ── */}
-          <div
-            onPointerMove={handlePointerMove}
-            className="spotlight-card group flex flex-col bg-[var(--surface)] border border-[var(--line)] rounded-[28px] overflow-hidden shadow-xs hover:shadow-xl hover:border-[var(--brand)]/40 transition-all duration-300"
-          >
-            {/* Visual Container */}
-            <div className="h-[250px] bg-slate-50/70 border-b border-[var(--line)] flex items-end justify-center px-5 overflow-hidden">
-              <div className="w-full max-w-[280px] bg-white rounded-t-2xl border-t border-x border-[var(--line)] shadow-lg transition-transform duration-300 group-hover:-translate-y-1">
-                {/* Browser chrome */}
-                <div className="px-3.5 py-2.5 border-b border-slate-100 flex items-center gap-2">
-                  <div className="flex items-center gap-1.5 shrink-0">
-                    <span className="w-2 h-2 rounded-full bg-slate-200" />
-                    <span className="w-2 h-2 rounded-full bg-slate-200" />
-                    <span className="w-2 h-2 rounded-full bg-slate-200" />
-                  </div>
-                  <div className="h-1.5 w-16 bg-slate-200 rounded-full ml-1" />
-                </div>
-
-                {/* Templates preview canvas */}
-                <div className="p-3.5 space-y-2.5">
-                  <div className="h-11 bg-slate-100 rounded-xl" />
-                  <div className="h-1.5 w-12 bg-slate-200 rounded-full mx-auto" />
-                  <div className="grid grid-cols-3 gap-2 relative">
-                    <div className="h-16 bg-slate-100 rounded-lg" />
-                    <div className="h-16 bg-slate-100 rounded-lg" />
-                    <div className="h-16 bg-slate-100 rounded-lg relative flex items-center justify-center">
-                      {/* Wand with magic sparkles */}
-                      <div className="relative">
-                        <Wand2 className="w-5 h-5 text-slate-800 -rotate-45" />
-                        <span className="absolute -top-1 -right-1 text-emerald-500 text-[10px] font-bold leading-none animate-pulse">
-                          ✦
-                        </span>
-                        <span className="absolute -bottom-1 -left-1 text-emerald-500 text-[8px] font-bold leading-none">
-                          ✦
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-7">
-              <h3 className="text-xl font-bold text-[var(--ink)] tracking-tight group-hover:text-[var(--brand)] transition-colors">
-                Minimalist templates
-              </h3>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                Clean online store website builder templates designed to showcase your products.
-              </p>
-            </div>
-          </div>
-
-          {/* ── CARD 4: Save time (AI Setup Steps) ── */}
-          <div
-            onPointerMove={handlePointerMove}
-            className="spotlight-card group flex flex-col bg-[var(--surface)] border border-[var(--line)] rounded-[28px] overflow-hidden shadow-xs hover:shadow-xl hover:border-[var(--brand)]/40 transition-all duration-300"
-          >
-            {/* Visual Container */}
-            <div className="h-[250px] bg-slate-50/70 border-b border-[var(--line)] flex items-center justify-center px-6">
-              <div className="w-full max-w-[240px] flex flex-col items-center">
-                {/* Step 1 */}
-                <div className="w-full bg-white border border-[var(--line)] rounded-xl px-3.5 py-2 flex items-center gap-2.5 shadow-2xs">
-                  <span className="w-5 h-5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-600 flex items-center justify-center shrink-0">
-                    1
-                  </span>
-                  <span className="text-xs font-medium text-slate-700">
-                    Tell AI what you sell
-                  </span>
-                </div>
-
-                {/* Connector */}
-                <div className="w-px h-3 bg-slate-200" />
-
-                {/* Step 2 */}
-                <div className="w-full bg-white border border-[var(--line)] rounded-xl px-3.5 py-2 flex items-center gap-2.5 shadow-2xs">
-                  <span className="w-5 h-5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-600 flex items-center justify-center shrink-0">
-                    2
-                  </span>
-                  <span className="text-xs font-medium text-slate-700">
-                    Add your products
-                  </span>
-                </div>
-
-                {/* Connector */}
-                <div className="w-px h-3 bg-slate-200" />
-
-                {/* Step 3 */}
-                <div className="w-full bg-white border border-[var(--line)] rounded-xl px-3.5 py-2 flex items-center gap-2.5 shadow-2xs">
-                  <span className="w-5 h-5 rounded-full bg-slate-100 text-[11px] font-bold text-slate-600 flex items-center justify-center shrink-0">
-                    3
-                  </span>
-                  <span className="text-xs font-medium text-slate-700">
-                    Add payments &amp; shipping
-                  </span>
-                </div>
-
-                {/* Connector to live badge */}
-                <div className="w-px h-3 border-l-2 border-dotted border-emerald-400" />
-
-                {/* Your store is live pill */}
-                <div className="w-full bg-emerald-50 border border-emerald-400/80 rounded-xl px-3.5 py-2 flex items-center gap-2.5 shadow-xs">
-                  <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
-                    <Check className="w-3 h-3 stroke-[3]" />
-                  </div>
-                  <span className="text-xs font-semibold text-emerald-800">
-                    Your store is live!
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-7">
-              <h3 className="text-xl font-bold text-[var(--ink)] tracking-tight group-hover:text-[var(--brand)] transition-colors">
-                Save time
-              </h3>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                Skip lengthy setup processes of traditional e-commerce platforms.
-              </p>
-            </div>
-          </div>
-
-          {/* ── CARD 5: User-friendly (AI Generated Sneaker Product Card + Google Sheets) ── */}
-          <div
-            onPointerMove={handlePointerMove}
-            className="spotlight-card group flex flex-col bg-[var(--surface)] border border-[var(--line)] rounded-[28px] overflow-hidden shadow-xs hover:shadow-xl hover:border-[var(--brand)]/40 transition-all duration-300"
-          >
-            {/* Visual Container */}
-            <div className="h-[250px] bg-slate-50/70 border-b border-[var(--line)] relative flex items-center justify-center px-4 overflow-hidden">
-              {/* Product card with AI generated sneaker photo */}
-              <div className="w-48 bg-white rounded-2xl border border-[var(--line)] shadow-lg overflow-hidden transition-transform duration-300 group-hover:scale-[1.02]">
-                <div className="relative aspect-square w-full bg-[#d8a86a] overflow-hidden">
-                  <Image
-                    src="/sneaker.jpg"
-                    alt="Classic R Sneaker"
-                    fill
-                    className="object-cover"
-                    sizes="192px"
-                    priority
-                  />
-                </div>
-                <div className="p-3">
-                  <p className="text-xs font-bold text-slate-800">Classic R</p>
-                  <p className="text-xs font-semibold text-emerald-600 mt-0.5">
-                    $99.00
-                  </p>
-                </div>
-              </div>
-
-              {/* Floating Google Sheets input cell overlay */}
-              <div className="absolute top-4 left-6 sm:left-8 bg-white rounded-lg border border-slate-200 shadow-xl p-2 z-10">
-                <div className="grid grid-cols-2 text-[9px] text-slate-400 font-semibold mb-1 px-1">
-                  <span>Name</span>
-                  <span className="text-right">Price</span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span className="text-[10px] text-slate-400">1</span>
-                  <div className="px-2 py-0.5 bg-blue-50/60 border-2 border-blue-500 rounded text-[11px] font-semibold text-slate-800">
-                    Classic R
-                  </div>
-                  <span className="text-[11px] text-slate-500 ml-1">99.00</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-7">
-              <h3 className="text-xl font-bold text-[var(--ink)] tracking-tight group-hover:text-[var(--brand)] transition-colors">
-                User-friendly
-              </h3>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                Create online store and manage it with Google Sheets with zero technical skills.
-              </p>
-            </div>
-          </div>
-
-          {/* ── CARD 6: Zero-commission ── */}
-          <div
-            onPointerMove={handlePointerMove}
-            className="spotlight-card group flex flex-col bg-[var(--surface)] border border-[var(--line)] rounded-[28px] overflow-hidden shadow-xs hover:shadow-xl hover:border-[var(--brand)]/40 transition-all duration-300"
-          >
-            {/* Visual Container */}
-            <div className="h-[250px] bg-slate-50/70 border-b border-[var(--line)] flex flex-col items-center justify-center px-6 gap-3.5">
-              {/* 0% commission green pill badge */}
-              <div className="px-4 py-1.5 rounded-full border border-emerald-400 bg-emerald-50 flex items-center justify-center shadow-2xs">
-                <span className="text-xs font-bold text-emerald-600">
-                  0% commission
-                </span>
-              </div>
-
-              {/* Live order notification pills */}
-              <div className="w-full max-w-[240px] space-y-2.5">
-                <div className="bg-white border border-[var(--line)] rounded-xl px-3 py-2 flex items-center gap-2.5 shadow-2xs">
-                  <div className="w-6 h-6 rounded-full bg-blue-500 text-white text-[9px] font-bold flex items-center justify-center shrink-0">
-                    SM
-                  </div>
-                  <span className="text-[10px] text-slate-400 font-medium">#1042</span>
-                  <span className="text-xs font-semibold text-slate-700 flex-1 truncate">
-                    Sarah M.
-                  </span>
-                  <span className="text-xs font-bold text-emerald-600">
-                    +$129
-                  </span>
-                </div>
-
-                <div className="bg-white border border-[var(--line)] rounded-xl px-3 py-2 flex items-center gap-2.5 shadow-2xs">
-                  <div className="w-6 h-6 rounded-full bg-amber-500 text-white text-[9px] font-bold flex items-center justify-center shrink-0">
-                    JK
-                  </div>
-                  <span className="text-[10px] text-slate-400 font-medium">#1043</span>
-                  <span className="text-xs font-semibold text-slate-700 flex-1 truncate">
-                    James K.
-                  </span>
-                  <span className="text-xs font-bold text-emerald-600">
-                    +$85
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-7">
-              <h3 className="text-xl font-bold text-[var(--ink)] tracking-tight group-hover:text-[var(--brand)] transition-colors">
-                Zero-commission
-              </h3>
-              <p className="mt-2 text-sm text-[var(--muted)] leading-relaxed">
-                We don&apos;t take a cut from your total orders.
-              </p>
-            </div>
-          </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

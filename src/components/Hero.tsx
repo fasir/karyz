@@ -52,21 +52,8 @@ export function Hero() {
         </p> */}
 
         {/* Call to Actions */}
-        {/* <div className="mt-8 flex flex-wrap gap-3.5 justify-center items-center">
-          <Link
-            href="#collections"
-            className="px-6 py-3.5 rounded-full text-base font-semibold border border-[var(--line)] bg-[var(--surface)] text-[var(--ink)] hover:border-[var(--brand)] hover:shadow-md transition-all active:scale-95"
-          >
-          Preview a store
-          </Link>
-          <Link
-            href="/create-store"
-            className="px-7 py-3.5 rounded-full text-base font-semibold text-white bg-gradient-to-r from-[var(--brand)] to-[var(--brand2)] shadow-lg shadow-purple-900/20 hover:shadow-purple-700/30 hover:opacity-95 transition-all active:scale-95 inline-flex items-center gap-2"
-          >
-            <span>Create your own store</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div> */}
+       
+        */
 
         {/* Interactive Store Mockup Demo with Floating Badges */}
         <div className="relative mt-14 max-w-4xl mx-auto" id="demo">
